@@ -3,5 +3,5 @@ console.log(paragraphs.length);
 
 if (paragraph.length > 0) {
     let paragraph = paragraphs[0];
-    paragraph.innerText = "Bienvenidos al bootcamp";
+    paragraph.innerText = "Bienvenidos al bootcamp"; //cambio de texto elemento p
 }
