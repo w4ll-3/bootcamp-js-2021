@@ -6,7 +6,7 @@ const ActionTypes = {
     ProductoAgregadoModificado: "producto-agregado-o-modificado",
 }
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     
     switch (action.type) {
         case ActionTypes.ProductoAgregado:
@@ -27,27 +27,27 @@ const reducer = (state, action) => {
 
 };
 
-const productoSeleccionado = (codigo) => ({
+export const productoSeleccionado = (codigo) => ({
     type: ActionTypes.ProductoSeleccionado,
         payload:{ codigo }
 });
 
-const productoElminado = (codigo) => ({
+export const productoElminado = (codigo) => ({
         type: ActionTypes.ProductoElminado,
         payload: { codigo }
 });
 
-const productoModificado = (payload) => ({
+export const productoModificado = (payload) => ({
     type: ActionTypes.ProductoModificado,
     payload
 });
 
-const productoAgregado = (payload) => ({
+export const productoAgregado = (payload) => ({
     type: ActionTypes.ProductoAgregado,
     payload
 });
 
-const agregarOModificarProducto = (payload) => ({
+export const agregarOModificarProducto = (payload) => ({
     type: ActionTypes.ProductoAgregadoModificado,
     payload
 });
@@ -64,14 +64,14 @@ const agregarOModificarProducto = (payload) => ({
 //     }
 // };
 
-const loggerMiddleware = store => next => action => {
+export const loggerMiddleware = store => next => action => {
     console.log("dispatching", action);
     const result = next(action);
     console.log("next state", store.getState());
     return result;
 };
 
-const agregarOModificarProductoMiddleware = store => next => action => {
+export const agregarOModificarProductoMiddleware = store => next => action => {
     
     if (action.type != ActionTypes.ProductoAgregadoModificado){
         return next(action);
@@ -86,7 +86,7 @@ const agregarOModificarProductoMiddleware = store => next => action => {
     return store.dispatch(productoSeleccionado(null));
 };
 
-const generadorCodigoProductoMiddleware = store => next => action => {
+export const generadorCodigoProductoMiddleware = store => next => action => {
     if (action.type != ActionTypes.ProductoAgregado){
         return next(action);
     }
@@ -141,7 +141,7 @@ function productoAgregadoReducer(state, action) {
     };
 }
 
-function generadorCodigoProductoBuilder(codigoInicial){
+export function generadorCodigoProductoBuilder(codigoInicial){
 
     let codigo = codigoInicial;
     return store => next => action => {
